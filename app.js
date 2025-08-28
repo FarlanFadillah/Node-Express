@@ -8,7 +8,7 @@ const server = http.createServer((req, res) => {
         res.end(homePage);
         return;
     }
-    if(req.url === '/about'){
+    if(req.url === '/abouts'){
         res.end('Here is our short history\n');
         return;
     }   
