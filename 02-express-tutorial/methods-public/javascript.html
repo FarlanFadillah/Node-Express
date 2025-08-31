@@ -65,12 +65,14 @@
       const formAlert = document.querySelector('.form-alert')
       btn.addEventListener('click', async (e) => {
         e.preventDefault()
+        formAlert.textContent = '';
         const nameValue = input.value
 
         try {
           const { data } = await axios.post('/api/people', { name: nameValue })
           const h5 = document.createElement('h5')
           h5.textContent = data.person
+          console.log(data.person, 'is added')
           result.appendChild(h5)
         } catch (error) {
           // console.log(error.response)
