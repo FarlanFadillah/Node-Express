@@ -1,0 +1,21 @@
+{
+  "name": "temp_project",
+  "version": "1.0.0",
+  "description": "testing project file architecture",
+  "main": "./src/app.mjs",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon app.mjs"
+  },
+  "author": "Me",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "morgan": "^1.10.1",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

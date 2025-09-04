@@ -1,0 +1,18 @@
+import express from 'express'
+import morgan from 'morgan'
+import * as routes from '../routes/index.mjs'
+
+const port = 8080;
+
+const app = express()
+
+app.use(morgan('tiny'))
+app.use(express.json())
+app.use(express.urlencoded({extended: true}));
+app.use('/', routes.homeRouter)
+app.use('/api/products', routes.productsRouter) 
+
+
+app.listen(port, () => {
+    console.log(`Server listening at port ${port}...`)
+})
