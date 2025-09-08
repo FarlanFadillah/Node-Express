@@ -4,15 +4,16 @@ import * as routes from '../routes/index.mjs'
 
 const port = 8080;
 
-const app = express()
+const app = express();
 
-app.use(morgan('tiny'))
-app.use(express.json())
+app.use(morgan('tiny'));
+app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use('/', routes.homeRouter)
-app.use('/api/products', routes.productsRouter) 
+app.use('/', routes.homeRouter);
+app.use('/api/products', routes.productsRouter);
 
+console.log(process.env.NODE_ENV);
 
 app.listen(port, () => {
-    console.log(`Server listening at port ${port}...`)
-})
+    console.log(`Server listening at port ${port}...`);
+});
