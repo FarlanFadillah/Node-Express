@@ -7,7 +7,7 @@ const db = new sqlite3.Database('../db/mydb.sqlite3', (err) =>{
 
 db.serialize(()=>{
     db.run(`CREATE TABLE IF NOT EXISTS peoples (
-        nik INT PRIMARY KEY NOT NULL,
+        id INT PRIMARY KEY NOT NULL,
         first_name TEXT NOT NULL,
         last_name TEXT,
         birth_date DATETIME NOT NULL,

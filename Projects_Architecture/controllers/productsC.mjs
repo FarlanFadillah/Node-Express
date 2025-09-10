@@ -30,7 +30,7 @@ export async function getProduct (req, res) {
 
     try {
         const data = await productsModel.get(id);
-        res.status(200).json({success : true, data : row});
+        res.status(200).json({success : true, data});
     } catch (error) {
         res.status(400).json({success : false, msg : error.message});
     }

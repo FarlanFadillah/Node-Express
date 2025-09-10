@@ -89,7 +89,10 @@ app.use(cors())
 
 // parse form data
 app.use(express.urlencoded({extended: true})); // this is for parsing application/x-www-form-urlencoded 
-// application/x-www-form-urlencoded is the default encoding type for forms. It is used to send data to the server in key-value pairs. The extended option allows to choose between parsing the URL-encoded data with the querystring library (when false) or the qs library (when true). The qs library allows for rich objects and arrays to be encoded into the URL-encoded format, allowing for a JSON-like experience with URL-encoded.
+// application/x-www-form-urlencoded is the default encoding type for forms. It is used to send data to the server in key-value pairs. 
+// The extended option allows to choose between parsing the URL-encoded data with the querystring library (when false) 
+// or the qs library (when true). The qs library allows for rich objects and arrays to be encoded into the URL-encoded format, 
+// allowing for a JSON-like experience with URL-encoded.
 // if extended is false, you can only parse simple key-value pairs. If extended is true, you can parse nested objects and arrays.
 // if you are not apply the express.urlencoded() middleware, req.body will be undefined when you try to access it in a POST request with form data.
 
