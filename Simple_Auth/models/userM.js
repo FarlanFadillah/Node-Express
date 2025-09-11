@@ -1,5 +1,4 @@
 const sqlite = require('sqlite3');
-const hasher = require('../auth/hashing')
 
 const db = new sqlite.Database('./db/mydb.sqlite3', (err)=>{
     if(err) return console.log(err.message);
@@ -17,10 +16,8 @@ db.serialize(()=>{
 });
 
 
-async function register(username, password){
+async function register(username, salt, hash){
     try {
-        const {salt, hash} = await hasher.hash(password);
-        // console.log(salt, hash);
         return new Promise((resolve, reject)=>{
             db.run(`INSERT INTO users (username, salt, hash) VALUES (?, ?, ?)`, [username, salt, hash], (err)=>{
             if(err)
@@ -35,20 +32,11 @@ async function register(username, password){
     }
 }
 
-async function login(username, password) {
-    try {
-        const {salt, hash} = await get(username);
-        await hasher.auth(password, salt, hash);
-        return {success : true, msg : "User Login"}
-    } catch (error) {
-        throw error;
-    }
-}
-
 function get(username) {
     return new Promise((resolve, reject)=>{
         db.get(`SELECT * FROM users WHERE username = ?`, [username], (err, row)=>{
             if(err) reject(err);
+            if(row == null){reject(new Error(`user '${username}' not found`));}
             resolve(row);
         });
     })    
@@ -69,6 +57,5 @@ function getAll(){
 module.exports = {
     register,
     getAll,
-    login,
     get
 }

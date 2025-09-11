@@ -1,5 +1,6 @@
 const { getAll } = require('../../Projects_Architecture/models/productsModel.mjs');
 const userModel = require('../models/userM')
+const hasher = require("../auth/hashing");
 
 
 async function checkUsername(req, res, next) {
@@ -18,7 +19,8 @@ async function checkUsername(req, res, next) {
 async function registerUser(req, res, next) {
     const {username, password} = req.body;
     try {
-        await userModel.register(username, password);
+        const {salt, hash} = await hasher.hash(password);
+        await userModel.register(username, salt, hash);
         res.status(204).json({success : true, msg : "User Created"})
     } catch (error) {
         next(error);
@@ -38,10 +40,11 @@ async function getAllUser(req, res, next){
 async function login(req, res, next) {
     const {username, password} = req.body;
     try {
-        const result = await userModel.login(username, password);
+        const {salt, hash} = await userModel.get(username);
+        const result = await hasher.auth(password, salt, hash);
         res.status(200).json(result);
     } catch (error) {
-        next(error);
+        throw error;
     }
     
 }
