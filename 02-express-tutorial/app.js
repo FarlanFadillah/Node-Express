@@ -97,7 +97,7 @@ app.use(express.urlencoded({extended: true})); // this is for parsing applicatio
 // if you are not apply the express.urlencoded() middleware, req.body will be undefined when you try to access it in a POST request with form data.
 
 // static assets
-app.use(express.static('./methods-public')) // this is overriding the default url path to the public folder
+app.use(express.static('./methods-views')) // this is overriding the default url path to the views folder
 
 // parse json
 app.use(express.json()); // this is for parsing application/json

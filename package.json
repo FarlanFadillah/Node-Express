@@ -1,7 +1,7 @@
 {
   "name": "node",
   "version": "1.0.0",
-  "description": "",
+  "description": "> Json Example\r ```json\r user {\r     name    : \"Farlan Fadillah\",\r     age     : 24, \r }\r ```",
   "main": "app.js",
   "scripts": {
     "start": "node app",
@@ -17,5 +17,13 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FarlanFadillah/Node-Express.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FarlanFadillah/Node-Express/issues"
+  },
+  "homepage": "https://github.com/FarlanFadillah/Node-Express#readme"
 }

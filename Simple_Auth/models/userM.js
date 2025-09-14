@@ -22,7 +22,7 @@ async function register(username, salt, hash){
             db.run(`INSERT INTO users (username, salt, hash) VALUES (?, ?, ?)`, [username, salt, hash], (err)=>{
             if(err)
             {
-                reject(err);
+                reject(new Error(`Username ${username} already exists`));
             }
             resolve({success : true});
         })
@@ -36,7 +36,6 @@ function get(username) {
     return new Promise((resolve, reject)=>{
         db.get(`SELECT * FROM users WHERE username = ?`, [username], (err, row)=>{
             if(err) reject(err);
-            if(row == null){reject(new Error(`user '${username}' not found`));}
             resolve(row);
         });
     })    

@@ -3,7 +3,7 @@ const app = express()
 let { people } = require('./data')
 
 // static assets
-app.use(express.static('./methods-public'))
+app.use(express.static('./methods-views'))
 // parse form data
 app.use(express.urlencoded({ extended: false }))
 // parse json

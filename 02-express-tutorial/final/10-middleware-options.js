@@ -6,7 +6,7 @@ const authorize = require('./authorize')
 //  req => middleware => res
 
 // app.use([logger, authorize])
-// app.use(express.static('./public'))
+// app.use(express.static('./views'))
 app.use(morgan('tiny'))
 
 app.get('/', (req, res) => {

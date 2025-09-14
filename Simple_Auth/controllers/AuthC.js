@@ -8,9 +8,8 @@ async function checkUsername(req, res, next) {
     // console.log(username, " > checking the username")
     try {
         const data = await userModel.get(username);
-        // console.log(data);
-        if(data != undefined) next(new Error("Username already taken!"));
-        next();
+        if(data === undefined) next();
+        next(new Error("Username already taken!"));
     } catch (error) {
         next(error);
     }
@@ -21,7 +20,7 @@ async function registerUser(req, res, next) {
     try {
         const {salt, hash} = await hasher.hash(password);
         await userModel.register(username, salt, hash);
-        res.status(204).json({success : true, msg : "User Created"})
+        res.status(200).json({success : true, msg : "User Created"})
     } catch (error) {
         next(error);
     }
@@ -40,8 +39,9 @@ async function getAllUser(req, res, next){
 async function login(req, res, next) {
     const {username, password} = req.body;
     try {
-        const {salt, hash} = await userModel.get(username);
-        const result = await hasher.auth(password, salt, hash);
+        const user = await userModel.get(username);
+        if(user === undefined) throw new Error(`User not found!`);
+        const result = await hasher.auth(password, user.salt, user.hash);
         res.status(200).json(result);
     } catch (error) {
         throw error;
