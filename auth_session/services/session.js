@@ -11,12 +11,7 @@ const SQLiteStore = new connectSqlite3({
 // configure session
 const my_session = session({
     store: SQLiteStore,
-    secret: process.env.SESSION_SECRET,
-    resave: true,
-    saveUninitialized: false,
-    cookie: {
-        maxAge: 1000 * 60 * 60, // one hour
-    }
+    
 });
 
 module.exports = my_session;

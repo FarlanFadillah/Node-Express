@@ -4,7 +4,7 @@
   "description": "> Json Example\r ```json\r user {\r     name    : \"Farlan Fadillah\",\r     age     : 24, \r }\r ```",
   "main": "app.js",
   "scripts": {
-    "start": "node app",
+    "start": "nodemon app",
     "dev": "nodemon app",
     "gadd": "git add *",
     "gcommit": "git commit -m 'update'"
@@ -13,7 +13,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.17.21"
+    "@dr.pogodin/csurf": "^1.16.5",
+    "bcrypt": "^6.0.0",
+    "csrf-csrf": "^4.0.3",
+    "csurf": "^1.11.0",
+    "dompurify": "^3.2.7",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "express-validator": "^7.2.1",
+    "jsdom": "^27.0.0",
+    "lodash": "^4.17.21",
+    "markdown-it": "^14.1.0",
+    "marked": "^16.3.0",
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
